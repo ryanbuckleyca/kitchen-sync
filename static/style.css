@@ -1,0 +1,344 @@
+*:active {
+  outline: 0;
+}
+*:focus {
+  outline: 0 !important;
+}
+html {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  touch-action: manipulation;
+}
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: var(--font);
+  padding: 0 4% 10% 3%;
+  font-size: 5vw;
+  height: 100%;
+}
+#main-frame {
+  position: relative;
+  max-width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 1000px) {
+  body {
+     font-size: 40px;
+  }
+}
+form {
+  width: 90%;
+}
+hr {
+  margin: 0;
+  border: 0.1px solid;
+  border-color: rgba(var(--foreground), 0.2) !important;
+}
+span {
+  margin: auto;
+  max-height: 100%;
+}
+h1 {
+  font-size: 130%;
+  margin: 2% auto;
+  text-shadow: 0.5px 0.5px 0px;
+  color: rgb(var(--foreground));
+}
+h1 span {
+  background: linear-gradient(177deg, rgb(var(--background)) 50%, rgba(var(--accent), 0.5) 51%);
+  padding: 0 1% 0 1%;
+  margin:0;
+  white-space: nowrap;
+}
+h2 {
+  font-size: 120%;
+  margin: 0 0 3%;
+}
+#groceryMenu {
+  position: sticky;
+  top: 0;
+  background:rgb(var(--background));
+  z-index: 1;
+  height: 125px;
+}
+
+#headerMenu {
+  margin: 0;
+  padding: 0 0 2% 0;
+}
+
+.container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  align-items: center;
+  height: 125px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 75%;
+  align-self: center;
+  margin: 0 auto;
+  font-weight: bolder;
+  font-size: 110%;
+  z-index: 2;
+}
+.header a {
+  text-decoration: none !important;
+  color: rgb(var(--foreground));
+}
+.header a:hover {
+  text-decoration: none !important;
+}
+.headerName {
+  padding: 3% 0;
+  margin: 0;
+  width: 100%;
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  animation: var(--flicker);
+}
+
+#dropdown {
+  display: none;
+  position: fixed;
+  background: rgb(var(--background));
+  width: 100%;
+  margin: auto;
+  left: 0;
+  padding: 0 0 4% 0;
+  border-bottom: 0.1px solid rgba(var(--background), 0.1);
+  box-shadow: 0px 6px 9px rgba(0, 0, 0, 0.1);
+}
+#dropdown a {
+  color: rgb(var(--foreground));
+  margin: 3.5% auto;
+  text-decoration: none;
+  font-size: inherit;
+  display: block;
+}
+#dropdown a:hover span {
+  padding: 0 1% 0 1%;
+  color: rgb(var(--foreground));
+  background: linear-gradient(181deg, rgb(var(--background)) 62%, rgba(var(--accent), 0.3) 51%);
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 6;
+  display: none;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(var(--background));
+  padding: 2%;
+  width: 75%;
+  max-width: calc(800px * 0.75);
+  border-radius: 2%;
+}
+.modal-content form {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.modal-content input {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
+  font-size: 100%;
+  height: 6%;
+  margin-bottom: 1.5%;
+  padding: 3%;
+  font-family: inherit;
+  border-radius: 5px;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgba(var(--foreground), 0.12);
+  }
+.modal-content button {
+  width: 100%;
+  border: 0;
+  padding: 4%;
+  margin: 0 0 5%;
+  border-radius: 0.5%;
+  text-align: center;
+  font-size: 100%;
+  font-family: inherit;
+  cursor: pointer;
+}
+.modal p {
+  margin: 3%;
+}
+.close {
+  position: absolute;
+  top: 5%;
+  right: 7%;
+  width: 2%;
+  font-size: 115%;
+  color: rgb(var(--out));
+  cursor: pointer;
+}
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.autocomplete {
+  position: relative;
+  display: flex;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 0;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: rgba(1, 1, 1, 0.9);
+  box-shadow: 0 1px 4px rgb(1, 1, 1, 0.4);
+}
+.autocomplete-items div {
+  padding: 3%;
+  cursor: pointer;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgba(var(--foreground), 0.1);
+}
+.autocomplete-items div:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.autocomplete-items div:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.autocomplete-items div:only-child {
+  border-radius: 5px;
+}
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  color: rgb(var(--accent));
+}
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: rgb(var(--accent)) !important;
+  color: rgb(var(--background));
+}
+
+.item {
+  flex: 1 0 auto;
+  max-width: 66%;
+  padding: 4%;
+  border-radius: 8px;
+  text-align: center;
+  margin: 1% 2%;
+}
+.low {
+  color: rgb(var(--foreground));
+  background-color: rgba(var(--low), 1);
+  box-shadow: var(--glow) rgb(var(--low));
+}
+.out {
+  color: rgb(var(--foreground));
+  background-color: rgba(var(--out), 1);
+  box-shadow: var(--glow) rgb(var(--out));
+}
+.good {
+  color: rgb(var(--foreground));
+  background-color: rgba(var(--good), 1);
+  box-shadow: var(--glow) rgb(var(--good));
+}
+.modify {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  outline: 0 !important;
+  box-shadow: inset 0px 0px 4px 0px rgb(var(--foreground));
+  border: 0.1vw solid rgba(var(--foreground), 0.5);
+}
+
+.button {
+  flex: 0;
+  text-align: center;
+  padding: 8px;
+  margin: 0;
+  background: none;
+  font-size: 120%;
+  border: 0;
+  cursor: pointer;
+}
+.del {
+  color: rgba(var(--out), 1);
+}
+.edit {
+  color: rgb(var(--accent));
+}
+.center {
+  text-align: center;
+  margin: 0 auto;
+}
+.left {
+  position: absolute;
+  left: 0;
+}
+.right {
+  position: absolute;
+  right: 0;
+}
+.top {
+  color:rgb(var(--foreground))
+}
+.addItem {
+  position: fixed;
+  bottom: 6vw;
+  right: 5vw;
+  width: 22vw;
+  height: 22vw;
+  max-width: 200px;
+  max-height: 200px;
+  z-index: 4;
+}
+.addItem button {
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  background: rgb(var(--accent));
+  font-size: 200%;
+  border: 1px solid rgba(var(--background), 0.1);
+  border-radius: 50%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.addItem button:hover {
+  filter: brightness(120%);
+}
+
+/* hide until rave mode enabled */
+#disco {
+  display: none;
+}
+#addButton {
+  display: block;
+}
